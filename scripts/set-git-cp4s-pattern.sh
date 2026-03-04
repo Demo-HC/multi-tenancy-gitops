@@ -22,8 +22,8 @@ GIT_GITOPS_APPLICATIONS_BRANCH=${GIT_GITOPS_APPLICATIONS_BRANCH:-${GIT_BRANCH}}
 GIT_GITOPS_NAMESPACE=${GIT_GITOPS_NAMESPACE:-openshift-gitops}
 HELM_REPOURL=${HELM_REPOURL:-https://charts.cloudnativetoolkit.dev}
 
-echo "Setting kustomization patches to ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA} on branch ${GIT_GITOPS_INFRA_BRANCH}"
-echo "Setting kustomization patches to ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES} on branch ${GIT_GITOPS_SERVICES_BRANCH}"
+echo "Setting kustomization patches to https://github.com/Demo-HC/multi-tenancy-gitops-infra.git on branch master"
+echo "Setting kustomization patches to https://github.com/Demo-HC/multi-tenancy-gitops-services.git on branch master"
 
 find ${SCRIPTDIR}/../0-bootstrap/single-cluster -name 'kustomization.yaml' -print0 |
     while IFS= read -r -d '' File; do

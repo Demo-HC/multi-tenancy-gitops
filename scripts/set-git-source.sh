@@ -26,9 +26,9 @@ HELM_REPOURL=${HELM_REPOURL:-https://charts.cloudnativetoolkit.dev}
 
 
 echo "Setting kustomization patches to https://github.com/Demo-HC/multi-tenancy-gitops.git on branch master"
-echo "Setting kustomization patches to ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA} on branch ${GIT_GITOPS_INFRA_BRANCH}"
-echo "Setting kustomization patches to ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES} on branch ${GIT_GITOPS_SERVICES_BRANCH}"
-echo "Setting kustomization patches to ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS} on branch ${GIT_GITOPS_APPLICATIONS_BRANCH}"
+echo "Setting kustomization patches to https://github.com/Demo-HC/multi-tenancy-gitops-infra.git on branch master"
+echo "Setting kustomization patches to https://github.com/Demo-HC/multi-tenancy-gitops-services.git on branch master"
+echo "Setting kustomization patches to https://github.com/Demo-HC/multi-tenancy-gitops-apps.git on branch master"
 
 find ${SCRIPTDIR}/../0-bootstrap -name '*.yaml' -print0 |
   while IFS= read -r -d '' File; do
@@ -36,12 +36,12 @@ find ${SCRIPTDIR}/../0-bootstrap -name '*.yaml' -print0 |
       #echo "$File"
       sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS}#https://github.com/Demo-HC/multi-tenancy-gitops.git#" $File
       sed -i'.bak' -e "s#\master#master#" $File
-      sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}#${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}#" $File
-      sed -i'.bak' -e "s#\${GIT_GITOPS_INFRA_BRANCH}#${GIT_GITOPS_INFRA_BRANCH}#" $File
-      sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_SERVICES}#${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES}#" $File
-      sed -i'.bak' -e "s#\${GIT_GITOPS_SERVICES_BRANCH}#${GIT_GITOPS_SERVICES_BRANCH}#" $File
-      sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}#${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}#" $File
-      sed -i'.bak' -e "s#\${GIT_GITOPS_APPLICATIONS_BRANCH}#${GIT_GITOPS_APPLICATIONS_BRANCH}#" $File
+      sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}#https://github.com/Demo-HC/multi-tenancy-gitops-infra.git#" $File
+      sed -i'.bak' -e "s#\master#master#" $File
+      sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_SERVICES}#https://github.com/Demo-HC/multi-tenancy-gitops-services.git#" $File
+      sed -i'.bak' -e "s#\master#master#" $File
+      sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}#https://github.com/Demo-HC/multi-tenancy-gitops-apps.git#" $File
+      sed -i'.bak' -e "s#\master#master#" $File
       sed -i'.bak' -e "s#\openshift-gitops#openshift-gitops#" $File
       sed -i'.bak' -e "s#\${HELM_REPOURL}#${HELM_REPOURL}#" $File
       rm "${File}.bak"

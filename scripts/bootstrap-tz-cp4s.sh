@@ -407,17 +407,17 @@ create_argocd_git_override_configmap () {
         originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops.git
         originBranch: master
       - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}
-        originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}
-        originBranch: ${GIT_GITOPS_INFRA_BRANCH}
+        originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-infra.git
+        originBranch: master
       - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_SERVICES}
-        originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES}
-        originBranch: ${GIT_GITOPS_SERVICES_BRANCH}
+        originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-services.git
+        originBranch: master
       - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}
-        originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}
-        originBranch: ${GIT_GITOPS_APPLICATIONS_BRANCH}
+        originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-apps.git
+        originBranch: master
       - upstreamRepoURL: https://github.com/cloud-native-toolkit-demos/multi-tenancy-gitops-apps.git
-        originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}
-        originBranch: ${GIT_GITOPS_APPLICATIONS_BRANCH}
+        originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-apps.git
+        originBranch: master
 EOF
 
   popd
@@ -461,9 +461,9 @@ set_git_source () {
   HELM_REPOURL=${HELM_REPOURL:-https://charts.cloudnativetoolkit.dev}
 
   echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS} on branch master"
-  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA} on branch ${GIT_GITOPS_INFRA_BRANCH}"
-  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES} on branch ${GIT_GITOPS_SERVICES_BRANCH}"
-  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS} on branch ${GIT_GITOPS_APPLICATIONS_BRANCH}"
+  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA} on branch master"
+  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES} on branch master"
+  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS} on branch master"
 
   find . -name '*.yaml' -print0 |
     while IFS= read -r -d '' File; do
@@ -472,11 +472,11 @@ set_git_source () {
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS}#" $File
         sed -i'.bak' -e "s#\master#master#" $File
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}#" $File
-        sed -i'.bak' -e "s#\${GIT_GITOPS_INFRA_BRANCH}#${GIT_GITOPS_INFRA_BRANCH}#" $File
+        sed -i'.bak' -e "s#\master#master#" $File
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_SERVICES}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES}#" $File
-        sed -i'.bak' -e "s#\${GIT_GITOPS_SERVICES_BRANCH}#${GIT_GITOPS_SERVICES_BRANCH}#" $File
+        sed -i'.bak' -e "s#\master#master#" $File
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}#" $File
-        sed -i'.bak' -e "s#\${GIT_GITOPS_APPLICATIONS_BRANCH}#${GIT_GITOPS_APPLICATIONS_BRANCH}#" $File
+        sed -i'.bak' -e "s#\master#master#" $File
         sed -i'.bak' -e "s#\openshift-gitops#openshift-gitops#" $File
         sed -i'.bak' -e "s#\${HELM_REPOURL}#${HELM_REPOURL}#" $File
         rm "${File}.bak"

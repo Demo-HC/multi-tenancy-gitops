@@ -141,7 +141,7 @@ create_repos () {
       echo "Repository ${GIT_GITOPS_INFRA_NAME} exists and already cloned... nothing to do"
     fi
     cd ${LOCAL_FOLDER_1}
-    git checkout ${GIT_GITOPS_INFRA_BRANCH} || git checkout --track origin/${GIT_GITOPS_INFRA_BRANCH}
+    git checkout master || git checkout --track origin/master
     cd ..
 
     GHREPONAME=$(gh api /repos/${GIT_ORG}/multi-tenancy-gitops-services -q .name || true)
@@ -160,7 +160,7 @@ create_repos () {
       echo "Repository ${GIT_GITOPS_SERVICES_NAME} exists and already cloned... nothing to do"
     fi
     cd ${LOCAL_FOLDER_2}
-    git checkout ${GIT_GITOPS_SERVICES_BRANCH} || git checkout --track origin/${GIT_GITOPS_SERVICES_BRANCH}
+    git checkout master || git checkout --track origin/master
     cd ..
 
     if [[ "${CP_EXAMPLES}" == "true" ]]; then
@@ -182,7 +182,7 @@ create_repos () {
         echo "Repository ${GIT_GITOPS_APPLICATIONS_NAME} exists and already cloned... nothing to do"
       fi
       cd ${LOCAL_FOLDER_3}
-      git checkout ${GIT_GITOPS_APPLICATIONS_BRANCH} || git checkout --track origin/${GIT_GITOPS_APPLICATIONS_BRANCH}
+      git checkout master || git checkout --track origin/master
       cd ..
 
       if [[ "${ACE_SCENARIO}" == "true" ]]; then

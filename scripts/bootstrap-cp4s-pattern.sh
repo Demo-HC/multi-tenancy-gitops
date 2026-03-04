@@ -104,7 +104,7 @@ fork_repos () {
     fi
     cd gitops-1-infra
     git remote set-url --push upstream no_push
-    git checkout ${GIT_GITOPS_INFRA_BRANCH} || git checkout --track origin/${GIT_GITOPS_INFRA_BRANCH}
+    git checkout master || git checkout --track origin/master
     cd ..
 
     GHREPONAME=$(gh api /repos/${GIT_ORG}/multi-tenancy-gitops-services -q .name || true)
@@ -118,7 +118,7 @@ fork_repos () {
     fi
     cd gitops-2-services
     git remote set-url --push upstream no_push
-    git checkout ${GIT_GITOPS_SERVICES_BRANCH} || git checkout --track origin/${GIT_GITOPS_SERVICES_BRANCH}
+    git checkout master || git checkout --track origin/master
     cd ..
 
     if [[ "${CP_EXAMPLES}" == "true" ]]; then
@@ -135,7 +135,7 @@ fork_repos () {
       fi
       cd gitops-3-apps
       git remote set-url --push upstream no_push
-      git checkout ${GIT_GITOPS_APPLICATIONS_BRANCH} || git checkout --track origin/${GIT_GITOPS_APPLICATIONS_BRANCH}
+      git checkout master || git checkout --track origin/master
       cd ..
 
       if [[ "${ACE_SCENARIO}" == "true" ]]; then
@@ -269,17 +269,17 @@ data:
       originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops.git
       originBranch: master
     - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}
-      originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}
-      originBranch: ${GIT_GITOPS_INFRA_BRANCH}
+      originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-infra.git
+      originBranch: master
     - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_SERVICES}
-      originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES}
-      originBranch: ${GIT_GITOPS_SERVICES_BRANCH}
+      originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-services.git
+      originBranch: master
     - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}
-      originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}
-      originBranch: ${GIT_GITOPS_APPLICATIONS_BRANCH}
+      originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-apps.git
+      originBranch: master
     - upstreamRepoURL: https://github.com/cloud-native-toolkit-demos/multi-tenancy-gitops-apps.git
-      originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}
-      originBranch: ${GIT_GITOPS_APPLICATIONS_BRANCH}
+      originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops-apps.git
+      originBranch: master
 EOF
 
 popd
