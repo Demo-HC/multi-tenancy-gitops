@@ -20,7 +20,7 @@ patches:
   patch: |-
     - op: add
       path: /spec/sourceRepos/-
-      value: ${HELM_REPOURL}
+      value: https://charts.cloudnativetoolkit.dev
 - target:
     group: argoproj.io
     kind: AppProject
@@ -48,7 +48,7 @@ patches:
       value: https://github.com/Demo-HC/multi-tenancy-gitops-apps.git
     - op: add
       path: /spec/sourceRepos/-
-      value: ${HELM_REPOURL}
+      value: https://charts.cloudnativetoolkit.dev
 - target:
     group: argoproj.io
     kind: AppProject

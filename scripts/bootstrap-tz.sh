@@ -489,7 +489,7 @@ set_git_source () {
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}#" $File
         sed -i'.bak' -e "s#\master#master#" $File
         sed -i'.bak' -e "s#\openshift-gitops#openshift-gitops#" $File
-        sed -i'.bak' -e "s#\${HELM_REPOURL}#${HELM_REPOURL}#" $File
+        sed -i'.bak' -e "s#\https://charts.cloudnativetoolkit.dev#https://charts.cloudnativetoolkit.dev#" $File
         rm "${File}.bak"
       fi
     done

@@ -43,7 +43,7 @@ find ${SCRIPTDIR}/../0-bootstrap -name '*.yaml' -print0 |
       sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}#https://github.com/Demo-HC/multi-tenancy-gitops-apps.git#" $File
       sed -i'.bak' -e "s#\master#master#" $File
       sed -i'.bak' -e "s#\openshift-gitops#openshift-gitops#" $File
-      sed -i'.bak' -e "s#\${HELM_REPOURL}#${HELM_REPOURL}#" $File
+      sed -i'.bak' -e "s#\https://charts.cloudnativetoolkit.dev#https://charts.cloudnativetoolkit.dev#" $File
       rm "${File}.bak"
     fi
   done
