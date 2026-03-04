@@ -134,7 +134,7 @@ resources:
 
 # Serverless
 - argocd/operators/openshift-serverless.yaml
-#- argocd/instances/openshift-serverless-knative-serving-instance.yaml
+- argocd/instances/openshift-serverless-knative-serving-instance.yaml
 
 # Service Mesh
 #- argocd/operators/elasticsearch.yaml
