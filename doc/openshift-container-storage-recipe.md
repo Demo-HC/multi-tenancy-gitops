@@ -72,7 +72,7 @@
         sizeGiB: ${STORAGE_SIZE}
         storageClass: ${STORCLASS}
         argo:
-          namespace: ${GIT_GITOPS_NAMESPACE}
+          namespace: openshift-gitops
           serviceAccount: openshift-gitops-cntk-argocd-application-controller
     ```
 

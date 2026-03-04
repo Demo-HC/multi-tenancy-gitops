@@ -42,7 +42,7 @@ find ${SCRIPTDIR}/../0-bootstrap -name '*.yaml' -print0 |
       sed -i'.bak' -e "s#\${GIT_GITOPS_SERVICES_BRANCH}#${GIT_GITOPS_SERVICES_BRANCH}#" $File
       sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_APPLICATIONS}#${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}#" $File
       sed -i'.bak' -e "s#\${GIT_GITOPS_APPLICATIONS_BRANCH}#${GIT_GITOPS_APPLICATIONS_BRANCH}#" $File
-      sed -i'.bak' -e "s#\${GIT_GITOPS_NAMESPACE}#${GIT_GITOPS_NAMESPACE}#" $File
+      sed -i'.bak' -e "s#\openshift-gitops#openshift-gitops#" $File
       sed -i'.bak' -e "s#\${HELM_REPOURL}#${HELM_REPOURL}#" $File
       rm "${File}.bak"
     fi
