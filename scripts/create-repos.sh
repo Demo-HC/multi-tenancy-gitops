@@ -122,7 +122,7 @@ create_repos () {
       echo "Repository ${GIT_GITOPS_NAME} exists and already cloned... nothing to do"
     fi
     cd ${LOCAL_FOLDER_0}
-    git checkout ${GIT_GITOPS_BRANCH} || git checkout --track origin/${GIT_GITOPS_BRANCH}
+    git checkout master || git checkout --track origin/master
     cd ..
 
     GHREPONAME=$(gh api /repos/${GIT_ORG}/multi-tenancy-gitops-infra -q .name || true)

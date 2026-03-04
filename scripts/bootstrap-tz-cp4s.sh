@@ -404,8 +404,8 @@ create_argocd_git_override_configmap () {
     map.yaml: |-
       map:
       - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS}
-        originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS}
-        originBranch: ${GIT_GITOPS_BRANCH}
+        originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops.git
+        originBranch: master
       - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}
         originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}
         originBranch: ${GIT_GITOPS_INFRA_BRANCH}
@@ -460,7 +460,7 @@ set_git_source () {
   GIT_GITOPS_NAMESPACE=${GIT_GITOPS_NAMESPACE:-openshift-gitops}
   HELM_REPOURL=${HELM_REPOURL:-https://charts.cloudnativetoolkit.dev}
 
-  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS} on branch ${GIT_GITOPS_BRANCH}"
+  echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS} on branch master"
   echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA} on branch ${GIT_GITOPS_INFRA_BRANCH}"
   echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES} on branch ${GIT_GITOPS_SERVICES_BRANCH}"
   echo "Setting kustomization patches to ${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS} on branch ${GIT_GITOPS_APPLICATIONS_BRANCH}"
@@ -470,7 +470,7 @@ set_git_source () {
       if grep -q "kind: Application\|kind: AppProject" "$File"; then
         echo "$File"
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS}#" $File
-        sed -i'.bak' -e "s#\${GIT_GITOPS_BRANCH}#${GIT_GITOPS_BRANCH}#" $File
+        sed -i'.bak' -e "s#\master#master#" $File
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}#" $File
         sed -i'.bak' -e "s#\${GIT_GITOPS_INFRA_BRANCH}#${GIT_GITOPS_INFRA_BRANCH}#" $File
         sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_SERVICES}#${GITEA_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES}#" $File

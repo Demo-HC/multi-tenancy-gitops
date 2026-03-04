@@ -90,7 +90,7 @@ fork_repos () {
     fi
     cd gitops-0-bootstrap
     git remote set-url --push upstream no_push
-    git checkout ${GIT_GITOPS_BRANCH} || git checkout --track origin/${GIT_GITOPS_BRANCH}
+    git checkout master || git checkout --track origin/master
     cd ..
 
     GHREPONAME=$(gh api /repos/${GIT_ORG}/multi-tenancy-gitops-infra -q .name || true)
@@ -267,8 +267,8 @@ data:
   map.yaml: |-
     map:
     - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS}
-      originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS}
-      originBranch: ${GIT_GITOPS_BRANCH}
+      originRepoUrL: https://github.com/Demo-HC/multi-tenancy-gitops.git
+      originBranch: master
     - upstreamRepoURL: \${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}
       originRepoUrL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}
       originBranch: ${GIT_GITOPS_INFRA_BRANCH}
